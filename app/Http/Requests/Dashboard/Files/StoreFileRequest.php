@@ -63,8 +63,8 @@ final class StoreFileRequest extends AppFormRequest
             Auth::id(),
             $this->file('file'),
             FileDescription::create(
-                (string) $this->input('public_name'),
-                (string) $this->input('description')
+                (string)$this->input('public_name'),
+                (string)$this->input('description')
             ),
             DeletionDateFactory::fromFormat(
                 FileDateRules::DATE_FORMAT,

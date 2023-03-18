@@ -28,7 +28,8 @@ use Illuminate\Http\Resources\Json\JsonResource;
 final class LinkTokenResource extends JsonResource
 {
     /**
-     * @param  Request  $request
+     * @param Request $request
+     *
      * @return array
      */
     public function toArray($request): array
@@ -37,17 +38,17 @@ final class LinkTokenResource extends JsonResource
 
         return [
             'type' => 'link_tokens',
-            'id'   => $this->id,
+            'id' => $this->id,
 
             'attributes' => [
-                'token'      => $attributes['token'],
-                'type'       => $attributes['type'],
+                'token' => $attributes['token'],
+                'type' => $attributes['type'],
                 'created_at' => $attributes['created_at'],
                 'updated_at' => $attributes['updated_at'],
             ],
 
             'links' => [
-                'self'     => route('api.link_tokens.show', [$this]),
+                'self' => route('api.link_tokens.show', [$this]),
                 'resource' => route('api.guest.files.resource', [$this->token->token()]),
             ]
         ];

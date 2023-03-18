@@ -16,14 +16,15 @@ use Illuminate\Http\Resources\Json\JsonResource;
 final class UserIdentifierResource extends JsonResource
 {
     /**
-     * @param  Request  $request
+     * @param Request $request
+     *
      * @return array
      */
     public function toArray($request): array
     {
         return [
             'type' => 'users',
-            'id'   => $this->id,
+            'id' => $this->id,
         ];
     }
 }

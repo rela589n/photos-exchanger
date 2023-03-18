@@ -45,7 +45,8 @@ final class FileResource extends JsonResource
     public static $wrap = false;
 
     /**
-     * @param  Request  $request
+     * @param Request $request
+     *
      * @return array
      */
     public function toArray($request): array
@@ -53,19 +54,19 @@ final class FileResource extends JsonResource
         $attributes = $this->getAttributes();
 
         return [
-            'type'          => 'files',
-            'id'            => $attributes['id'],
-            'attributes'    => [
-                'public_name'        => $attributes['public_name'],
-                'description'        => $attributes['description'],
+            'type' => 'files',
+            'id' => $attributes['id'],
+            'attributes' => [
+                'public_name' => $attributes['public_name'],
+                'description' => $attributes['description'],
                 'will_be_deleted_at' => $attributes['will_be_deleted_at'],
             ],
             'relationships' => [
-                'user'        => new FileUserRelationshipResource($this->user, $this->resource),
+                'user' => new FileUserRelationshipResource($this->user, $this->resource),
                 'link_tokens' => new FileLinkTokensRelationshipResource($this->linkTokens, $this->resource),
             ],
-            'links'         => [
-                'self'     => route('api.files.show', $this),
+            'links' => [
+                'self' => route('api.files.show', $this),
                 'resource' => $this->location->url(),
             ],
         ];

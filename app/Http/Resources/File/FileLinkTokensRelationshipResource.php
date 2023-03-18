@@ -30,8 +30,9 @@ final class FileLinkTokensRelationshipResource extends ResourceCollection
 
     /**
      * FileLinkTokensRelationshipResource constructor.
-     * @param  Collection|FileLinkToken[]  $resource
-     * @param  File  $parent
+     *
+     * @param Collection|FileLinkToken[] $resource
+     * @param File                       $parent
      */
     public function __construct(Collection $resource, File $parent)
     {
@@ -41,17 +42,18 @@ final class FileLinkTokensRelationshipResource extends ResourceCollection
     }
 
     /**
-     * @param  Request  $request
+     * @param Request $request
+     *
      * @return array
      */
     public function toArray($request): array
     {
         return [
             'links' => [
-                'self'    => route('api.files.relationships.link_tokens', [$this->file]),
+                'self' => route('api.files.relationships.link_tokens', [$this->file]),
                 'related' => route('api.files.link_tokens.index', [$this->file])
             ],
-            'data'  => LinkTokenIdentifierResource::collection($this->collection),
+            'data' => LinkTokenIdentifierResource::collection($this->collection),
         ];
     }
 }

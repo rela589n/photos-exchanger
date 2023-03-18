@@ -34,17 +34,18 @@ final class FileUserRelationshipResource extends JsonResource
     }
 
     /**
-     * @param  Request  $request
+     * @param Request $request
+     *
      * @return array
      */
     public function toArray($request): array
     {
         return [
             'links' => [
-                'self'    => route('api.files.relationships.user', [$this->file]),
+                'self' => route('api.files.relationships.user', [$this->file]),
                 'related' => route('api.users.show', [$this->resource])
             ],
-            'data'  => new UserIdentifierResource($this->resource),
+            'data' => new UserIdentifierResource($this->resource),
         ];
     }
 }

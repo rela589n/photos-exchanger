@@ -33,13 +33,14 @@ final class FileLinkTokensRelatedResource extends ResourceCollection
     }
 
     /**
-     * @param  Request  $request
+     * @param Request $request
+     *
      * @return array
      */
     public function toArray($request): array
     {
         return [
-            'data'  => LinkTokenResource::collection($this->collection),
+            'data' => LinkTokenResource::collection($this->collection),
             'links' => [
                 'self' => route('api.files.link_tokens.index', [$this->file])
             ],

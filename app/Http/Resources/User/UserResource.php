@@ -22,12 +22,12 @@ use Illuminate\Http\Resources\Json\JsonResource;
  *         @OA\Property(property="self", type="string", example="http://localhost:8000/api/users/1")
  *      ),
  * )
- *
  */
 final class UserResource extends JsonResource
 {
     /**
-     * @param  Request  $request
+     * @param Request $request
+     *
      * @return array
      */
     public function toArray($request): array
@@ -35,14 +35,14 @@ final class UserResource extends JsonResource
         $attributes = $this->getAttributes();
 
         return [
-            'type'       => 'users',
-            'id'         => $this->id,
+            'type' => 'users',
+            'id' => $this->id,
             'attributes' => [
-                'name'              => $attributes['name'],
-                'email'             => $attributes['email'],
+                'name' => $attributes['name'],
+                'email' => $attributes['email'],
                 'email_verified_at' => $attributes['email_verified_at'],
             ],
-            'links'      => [
+            'links' => [
                 'self' => route('api.users.show', [$this]),
             ],
         ];

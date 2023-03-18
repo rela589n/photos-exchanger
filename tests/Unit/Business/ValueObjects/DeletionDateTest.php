@@ -11,25 +11,25 @@ use PHPUnit\Framework\TestCase;
 
 class DeletionDateTest extends TestCase
 {
-    public function test_create_expired_deletion_date(): void
+    public function testCreateExpiredDeletionDate(): void
     {
         $deletionDate = new NotNullDeletionDate(Carbon::yesterday());
         self::assertTrue($deletionDate->expired());
     }
 
-    public function test_create_deletion_date_now(): void
+    public function testCreateDeletionDateNow(): void
     {
         $deletionDate = new NotNullDeletionDate(Carbon::now());
         self::assertTrue($deletionDate->expired());
     }
 
-    public function test_successful_deletion_date(): void
+    public function testSuccessfulDeletionDate(): void
     {
         $deletionDate = new NotNullDeletionDate(Carbon::tomorrow());
         self::assertFalse($deletionDate->expired());
     }
 
-    public function test_date_time_formatting(): void
+    public function testDateTimeFormatting(): void
     {
         $sourceDate = Carbon::tomorrow();
         $deletionDate = new NotNullDeletionDate($sourceDate);
@@ -40,28 +40,28 @@ class DeletionDateTest extends TestCase
         );
     }
 
-    public function test_null_deletion_date_from_format(): void
+    public function testNullDeletionDateFromFormat(): void
     {
         $deletionDate = DeletionDateFactory::fromFormat('Y-m-d', null);
 
         self::assertInstanceOf(NullDeletionDate::class, $deletionDate);
     }
 
-    public function test_create_deletion_date_from_empty_string(): void
+    public function testCreateDeletionDateFromEmptyString(): void
     {
         $deletionDate = DeletionDateFactory::fromFormat('Y-m-d', '');
 
         self::assertInstanceOf(NullDeletionDate::class, $deletionDate);
     }
 
-    public function test_invalid_format_of_deletion_date(): void
+    public function testInvalidFormatOfDeletionDate(): void
     {
         $this->expectException(InvalidFormatException::class);
 
         DeletionDateFactory::fromFormat('Y-m-d', '2020/02/12');
     }
 
-    public function test_null_deletion_date(): void
+    public function testNullDeletionDate(): void
     {
         $nullDeletionDate = NullDeletionDate::instance();
 
